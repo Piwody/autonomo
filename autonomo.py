@@ -24,8 +24,7 @@ def prueba(prefijo, longitud, alfabeto, objetivo):
     
     return None
 
-
-# Esta función realiza un ataque de fuerza bruta para encontrar la contraseña dada un alfabeto y una contraseña objetivo.
+# tiene dos parte la primera la logica y la segunda la parte de medir el tiempo y los intentos y la contrasena 
 
 
 def bruteforce(alfabeto, password):

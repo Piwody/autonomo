@@ -12,7 +12,8 @@ en el tema de gestionar la longitud  el bucle for largo in range 1, 10 asegura q
 Y de ahi el timer para los intentos y las varaibles globales para poder contar cuantas veces se ha generado en total cada vez que se llama al bucle. 
 
 
-cualquier cosa si tengo que defender mas mi codigo me avisa profe no le meinto si me ayudo chatgpt al menos en crear el bucle por que no podia y como le dije entra a trabajar a las 18
+cualquier cosa si tengo que defender mas mi codigo me avisa profe. no le meinto si me ayudo chatgpt  un poco pero no a hacer sino a comorender al menos en crear el bucle por que no podia.
+Y profe ayudmeme  como le dije entro  a trabajar a las 18
 
 cuidese 
 

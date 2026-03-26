@@ -30,7 +30,7 @@ def prueba(prefijo, longitud, alfabeto, objetivo):
 def bruteforce(alfabeto, password):
     global intentos
     intentos = 0
-    tiempo = time.time()
+    inicial = time.time()
     
    
     
@@ -43,7 +43,7 @@ def bruteforce(alfabeto, password):
         if encontrada:
 
             final = time.time()
-            tiempo_total = final - tiempo
+            tiempo_total = final - inicial
            
             print("te cachamos tu pass es: " + str(encontrada))
             print("intentos: " + str(intentos))

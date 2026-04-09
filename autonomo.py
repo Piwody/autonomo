@@ -1,62 +1,35 @@
 import time
+import requests
+from itertools import product 
 
+URL_LOGIN = "http://127.0.0.1:8000/login"
+USUARIO_OBJETIVO = "user1"
 
-intentos = 0
+def intentar_login(password_probar):
+    datos = {"username": USUARIO_OBJETIVO, "contrasena": password_probar}
+    try:
+        r = requests.post(URL_LOGIN, json=datos)
+        return r.status_code == 200
+    except:
+        return False
 
-
-
-def prueba(prefijo, longitud, alfabeto, objetivo):
-    global intentos
-    
-  
-    if len(prefijo) == longitud:
-        intentos += 1
-        if prefijo == objetivo:
-            return prefijo
-        return None
-
-    
-    for char in alfabeto:
-        resultado = prueba(prefijo + char, longitud, alfabeto, objetivo)
-
-        if resultado: 
-            return resultado
-    
-    return None
-
-# tiene dos parte la primera la logica y la segunda la parte de medir el tiempo y los intentos y la contrasena 
-
-
-def bruteforce(alfabeto, password):
-    global intentos
+def bruteforce_itertools(alfabeto):
     intentos = 0
-    inicial = time.time()
-    
-   
-    
-    
-    for largo in range(1, 10): 
+    inicio = time.time()
 
-        print("viendo los caracteres " + str(largo) + "...")
-        encontrada = prueba("", largo, alfabeto, password)
-        
-        if encontrada:
-
-            final = time.time()
-            tiempo_total = final - inicial
-           
-            print("te cachamos tu pass es: " + str(encontrada))
-            print("intentos: " + str(intentos))
-            print("tiempo en segundos: " + str((tiempo_total)) )
+    for largo in range(1, 6): 
+        print(f"Buscando combinaciones de {largo} caracteres...")
+        for combinacion in product(alfabeto, repeat=largo):
+            intentos += 1
+            palabra = "".join(combinacion)
             
-            return encontrada
-
-    print("No se encontró la contraseña con el alfabeto.")
+            if intentar_login(palabra):
+                fin = time.time()
+                print(f"\n ¡CONTRASEÑA ENCONTRADA!: {palabra}")
+                print(f" Intentos: {intentos} | Tiempo: {fin - inicio:.2f}segundos")
+                return palabra
     return None
 
-
-
-caracterdeuser= "abcdefghijklmnopqrstuvwxyz0123456789"
-contra = "carro" 
-
-bruteforce(caracterdeuser, contra)
+if __name__ == "__main__":
+    alfabeto = "abcdefghijklmnopqrstuvwxyz0123456789"
+    bruteforce_itertools(alfabeto)
